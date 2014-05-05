@@ -24,7 +24,7 @@
     nil
     (dom/div nil "Hello, world!")
     (dom/button
-      {:onClick #(say-goodbye!)}
+      {:onClick say-goodbye!}
       "Continue")))
 
 (def app-state (atom {:frame Frame1}))
