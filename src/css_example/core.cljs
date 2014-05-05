@@ -6,17 +6,25 @@
 
 (declare app-state)
 (declare render)
+(declare Frame1)
+(declare Frame2)
 
 (def css-transition-group
   (-> js/React
       (aget "addons")
       (aget "CSSTransitionGroup")))
 
+(defn frame1 []
+  (dom/div #js {:key "frame-1"} (Frame1)))
+
+(defn frame2 []
+  (dom/div #js {:key "frame-2"} (Frame2)))
+
 (q/defcomponent Frame2 []
   (dom/div nil "Goodbye, world!"))
 
 (defn say-goodbye! []
-  (reset! app-state {:frame Frame2})
+  (reset! app-state {:frame frame2})
   (render))
 
 (q/defcomponent Frame1 []
@@ -27,7 +35,7 @@
       {:onClick say-goodbye!}
       "Continue")))
 
-(def app-state (atom {:frame Frame1}))
+(def app-state (atom {:frame frame1}))
 
 (q/defcomponent App [state]
   (css-transition-group
